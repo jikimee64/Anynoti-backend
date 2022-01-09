@@ -9,38 +9,41 @@ buildscript {
     }
     dependencies {
         classpath("$boot:spring-boot-gradle-plugin:$spring")
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
     }
 }
 
 allprojects {
     group = "com.anynoti"
     version = "1.0.0"
-
 }
 
 subprojects {
-
     apply plugin: "java"
+    apply plugin: 'org.sonarqube'
     apply plugin: boot
     apply plugin: "io.spring.dependency-management"
     apply plugin: "idea"
+    apply plugin: 'jacoco'
+
+    sourceCompatibility = '11'
 
     repositories {
         mavenCentral()
     }
 
+    test {
+        useJUnitPlatform() // JUnit5를 사용하기 위한 설정
+        finalizedBy 'jacocoTestReport' // 추가
+    }
+
     configurations {
-//        developmentOnly
         runtimeClasspath {
             extendsFrom developmentOnly
         }
     }
 
     dependencies {
-//        developmentOnly("$boot:spring-boot-devtools")
-        implementation "$boot:spring-boot-starter-security"
-        implementation 'com.fasterxml.jackson.core:jackson-annotations'
-
         compileOnly lombok
         testCompileOnly lombok
         annotationProcessor lombok
@@ -49,9 +52,86 @@ subprojects {
         testImplementation "$boot:spring-boot-starter-test"
     }
 
-    test {
-        useJUnitPlatform()
+    jacoco {
+        toolVersion = '0.8.7'
     }
+
+    jacocoTestReport {
+        reports {
+            html.enabled true
+            csv.enabled false
+            xml.enabled true
+        }
+
+        def Qdomains = []
+
+        for (qPattern in '**/QA'..'**/QZ') { // qPattern = '*.QA', '*.QB', ... '*.QZ'
+            Qdomains.add(qPattern + '*')
+        }
+
+        afterEvaluate {
+            classDirectories.setFrom(
+                    files(classDirectories.files.collect {
+                        fileTree(dir: it,
+                                excludes: [
+                                        '**/Application*',
+                                ] + Qdomains
+                        )
+                    })
+            )
+        }
+
+        finalizedBy 'jacocoTestCoverageVerification'
+    }
+
+    jacocoTestCoverageVerification {
+        def Qdomains = []
+
+        for (qPattern in '*.QA'..'*.QZ') { // qPattern = '*.QA', '*.QB', ... '*.QZ'
+            Qdomains.add(qPattern + '*')
+        }
+
+        violationRules {
+            rule {
+                enabled = true
+                element = 'CLASS'
+
+                limit {
+                    counter = 'LINE'
+                    value = 'COVEREDRATIO'
+                    minimum = 0.00
+                }
+
+                limit {
+                    counter = 'BRANCH'
+                    value = 'COVEREDRATIO'
+                    minimum = 0.00
+                }
+
+                excludes = [
+                        '**/Application*',
+                ] + Qdomains
+            }
+        }
+
+    }
+
+    sonarqube {
+        properties {
+            property 'sonar.host.url', 'http://[인스턴스 ip 주소]:[포트 번호]'
+            property 'sonar.login', '{SonarQube 로그인 토큰}'
+            property 'sonar.sources', 'src'
+            property 'sonar.language', 'java'
+            property 'sonar.projectVersion', '1.1.0-SNAPSHOT'
+            property 'sonar.sourceEncoding', 'UTF-8'
+            property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
+            property 'sonar.java.binaries', '.'
+            property 'sonar.test.inclusions', '**/*Test.java'
+            property 'sonar.exclusions', '**/test/**/*, **/Q*.java, **/*Doc*.java, **/resources/**/*'
+        }
+    }
+
+
 
 }
 
@@ -87,5 +167,3 @@ subprojects {
         }
     }
 }
-
-help.enabled(false)

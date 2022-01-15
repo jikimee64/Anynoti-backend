@@ -22,7 +22,7 @@ public class User {
     private Integer id;
 
     @Column(nullable = false, length = 50)
-    private String googleId;
+    private String providerId;
 
     @Column(nullable = false, length = 50)
     private String email;
@@ -31,12 +31,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private ProviderType providerType;
 
-    public User(String googleId, String email, ProviderType providerType) {
-        Assert.notNull(googleId, "googleId must not be null");
+    public User(String providerId, String email, ProviderType providerType) {
+        Assert.notNull(providerId, "providerId must not be null");
         Assert.notNull(email, "email must not be null");
         Assert.notNull(providerType, "providerType must not be null");
 
-        this.googleId = googleId;
+        this.providerId = providerId;
         this.email = email;
         this.providerType = providerType;
     }

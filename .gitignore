@@ -244,3 +244,17 @@ gradle-app.setting
 /src/main/resources/aws-s3.yml
 
 /logs
+
+### application-*.yml ###
+/server/app-web/src/main/resources/application-*.yml
+/server/crawling/src/main/resources/application-*.yml
+/server/notification/src/main/resources/application-*.yml
+/server/oauth2/src/main/resources/application-*.yml
+
+!/server/app-web/src/main/resources/application-local.yml
+!/server/crawling/src/main/resources/application-local.yml
+!/server/notification/src/main/resources/application-local.yml
+!/server/oauth2/src/main/resources/application-local.yml
+
+
+

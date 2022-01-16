@@ -1,0 +1,6 @@
+## default yml
+spring:
+  profiles:
+    active: local, oauth2, secret
+  main:
+    banner-mode: off

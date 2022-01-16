@@ -1,0 +1,4 @@
+[submodule "anynoti-backend-submodule"]
+	path = anynoti-backend-submodule
+	url = https://github.com/jikimee64/anynoti-backend-submodule.git
+	branch = master

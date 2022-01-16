@@ -9,12 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@ToString
 public class User {
 
     @Id
@@ -23,21 +26,16 @@ public class User {
 
     @Column(nullable = false, length = 50)
     private String providerId;
-
-    @Column(nullable = false, length = 50)
-    private String email;
-
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
     private ProviderType providerType;
 
-    public User(String providerId, String email, ProviderType providerType) {
+    @Builder
+    public User(String providerId, ProviderType providerType) {
         Assert.notNull(providerId, "providerId must not be null");
-        Assert.notNull(email, "email must not be null");
         Assert.notNull(providerType, "providerType must not be null");
 
         this.providerId = providerId;
-        this.email = email;
         this.providerType = providerType;
     }
 

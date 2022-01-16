@@ -4,8 +4,6 @@ dependencies {
     implementation ("$boot:spring-boot-starter-actuator")
     implementation ("$boot:spring-boot-starter-web")
 
-    annotationProcessor ("boot:spring-boot-configuration-processor")
-
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 

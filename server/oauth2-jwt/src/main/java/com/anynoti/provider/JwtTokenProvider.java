@@ -1,8 +1,8 @@
 package com.anynoti.provider;
 
-import com.anynoti.AuthorizationExtractor;
-import com.anynoti.AuthorizationType;
-import com.anynoti.JwtPayloadDto;
+import com.anynoti.web.AuthorizationExtractor;
+import com.anynoti.web.AuthorizationType;
+import com.anynoti.dto.JwtPayloadDto;
 import com.anynoti.user.ProviderType;
 import com.anynoti.user.User;
 import com.anynoti.user.UserRepository;
@@ -88,7 +88,7 @@ public class JwtTokenProvider {
         String providerId = jwtPayloadDto.getProviderId();
         String provider = jwtPayloadDto.getProviderType().getProvider();
 
-        User user = userRepository.findUserByGoogleId(providerId)
+        User user = userRepository.findUserByProviderId(providerId)
             .orElseThrow(
                 () -> new AuthenticationCredentialsNotFoundException(
                     "credential error: 존재하지 않는 회원입니다."));

@@ -1,4 +1,4 @@
-package com.anynoti;
+package com.anynoti.dto;
 
 import com.anynoti.user.ProviderType;
 import lombok.Builder;

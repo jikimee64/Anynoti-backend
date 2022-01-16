@@ -35,7 +35,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String jwtToken = jwtTokenProvider.extractToken(request);
         try {
             if (StringUtils.hasText(jwtToken) && (jwtTokenProvider.isValidToken(jwtToken))) {
-                test(jwtToken);
+                setSecurityContext(jwtToken);
             }
             filterChain.doFilter(request, response);
         } catch (AuthenticationException e) {
@@ -44,7 +44,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
     }
 
-    private void test(String jwtToken) throws JsonProcessingException {
+    private void setSecurityContext(String jwtToken) throws JsonProcessingException {
         if (nonExistedAuthenticated()) {
             SecurityContext context = SecurityContextHolder.createEmptyContext();
             Authentication authentication = jwtTokenProvider.extractAuthentication(jwtToken);

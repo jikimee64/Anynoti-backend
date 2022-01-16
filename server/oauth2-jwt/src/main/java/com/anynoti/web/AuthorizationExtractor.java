@@ -1,4 +1,4 @@
-package com.anynoti;
+package com.anynoti.web;
 
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;

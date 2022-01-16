@@ -1,4 +1,4 @@
-package com.anynoti;
+package com.anynoti.web;
 
 public enum AuthorizationType {
     BEARER;

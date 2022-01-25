@@ -1,23 +1,20 @@
 package com.anynoti.provider;
 
-import com.anynoti.web.AuthorizationExtractor;
-import com.anynoti.web.AuthorizationType;
 import com.anynoti.dto.JwtPayloadDto;
 import com.anynoti.user.ProviderType;
 import com.anynoti.user.User;
 import com.anynoti.user.UserRepository;
+import com.anynoti.web.AuthorizationExtractor;
+import com.anynoti.web.AuthorizationType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import io.micrometer.core.instrument.util.StringUtils;
-import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -25,7 +22,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,9 +36,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class JwtTokenProvider {
+
     @Value("${jwt.token.secret-key}")
     private String secretKey;
-    private Key keyAccess;
     @Value("${jwt.token.expire-seconds}")
     private long expireSeconds;
     private UserRepository userRepository;
@@ -54,16 +50,10 @@ public class JwtTokenProvider {
         this.objectMapper = objectMapper;
     }
 
-    @PostConstruct
-    protected void init() {
-        byte[] keyAccessByte = Decoders.BASE64.decode(secretKey);
-        this.keyAccess = Keys.hmacShaKeyFor(keyAccessByte);
-    }
-
     public String createToken(String providerId, ProviderType providerType)
         throws JsonProcessingException {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expiredAt = now.plus( expireSeconds, ChronoUnit.MILLIS );
+        LocalDateTime expiredAt = now.plus(expireSeconds, ChronoUnit.MILLIS);
         JwtPayloadDto jwtPayloadDto = JwtPayloadDto.builder()
             .providerId(providerId)
             .providerType(providerType)
@@ -73,9 +63,9 @@ public class JwtTokenProvider {
 
         return Jwts.builder()
             .setClaims(claims)
-            .setIssuedAt( Date.from( now.atZone( ZoneId.systemDefault()).toInstant() ) )
-            .setExpiration( Date.from( expiredAt.atZone( ZoneId.systemDefault() ).toInstant() ) )
-            .signWith(keyAccess, SignatureAlgorithm.HS512)
+            .setIssuedAt(Date.from(now.atZone(ZoneId.systemDefault()).toInstant()))
+            .setExpiration(Date.from(expiredAt.atZone(ZoneId.systemDefault()).toInstant()))
+            .signWith(SignatureAlgorithm.HS512, secretKey)
             .compact();
     }
 
@@ -98,7 +88,7 @@ public class JwtTokenProvider {
         //TODO: 권한계층 설계 후 수정
         OAuth2User authenticatedUser = new DefaultOAuth2User(
             Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
-                attribute, provider);
+            attribute, provider);
 
         //TODO: 권한계층 설계 후 수정
         return new OAuth2AuthenticationToken(authenticatedUser,
@@ -108,8 +98,8 @@ public class JwtTokenProvider {
 
     private JwtPayloadDto extractJwtPayload(String jwtToken) throws JsonProcessingException {
         isValidToken(jwtToken);
-        String subject = Jwts.parserBuilder()
-            .setSigningKey(keyAccess).build()
+        String subject = Jwts.parser()
+            .setSigningKey(secretKey)
             .parseClaimsJws(jwtToken)
             .getBody()
             .getSubject();
@@ -127,16 +117,16 @@ public class JwtTokenProvider {
     public boolean isValidToken(String jwtToken) {
         if (StringUtils.isNotEmpty(jwtToken)) {
             try {
-                Jwts.parserBuilder().setSigningKey(keyAccess).build().parseClaimsJws(jwtToken);
+                Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
                 return true;
-            } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
-                log.error("Invalid JWT token", e.getMessage());
             } catch (ExpiredJwtException e) {
                 log.error("Expired JWT token", e.getMessage());
             } catch (UnsupportedJwtException e) {
                 log.error("Unsupported JWT token", e.getMessage());
             } catch (IllegalArgumentException e) {
                 log.error("JWT claims string is empty.", e.getMessage());
+            } catch (JwtException e) {
+                log.error("Invalid JWT token", e.getMessage());
             }
         }
         return false;

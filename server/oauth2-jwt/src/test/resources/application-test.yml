@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialects: org.hibernate.dialect.MySQL57Dialect
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 1000
+        jdbc.batch_size: 50
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/anynoti?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 1q2w3e4r1!
+
+jwt:
+  token:
+    expire-seconds: 86400000
+    secret-key: 8a5dc8cb51f34986058f21ce38ee9fecb91bfe7e9e344131d3a0877317f4e533b738b93791db032918c599da59cccd6b2d148cd4023268c827bc3a534b74e4

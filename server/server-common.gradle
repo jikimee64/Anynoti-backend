@@ -3,9 +3,10 @@ dependencies {
 
     implementation ("$boot:spring-boot-starter-actuator")
     implementation ("$boot:spring-boot-starter-web")
+    implementation("$boot:spring-boot-starter-data-jpa")
 
     runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    runtimeOnly 'mysql:mysql-connector-java'
 
     compile project(":domain-app-domain");
     compile project(":comp-common-utils");

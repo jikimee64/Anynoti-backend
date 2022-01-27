@@ -1,6 +1,7 @@
-package com.anynoti.entity;
+package com.anynoti.animation;
 
 import com.anynoti.common.BaseTimeEntity;
+import com.anynoti.user.User;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;

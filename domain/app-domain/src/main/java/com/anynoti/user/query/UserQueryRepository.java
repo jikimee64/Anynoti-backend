@@ -1,8 +1,6 @@
 package com.anynoti.user.query;
 
-import static com.anynoti.user.QUser.user;
-
-import com.anynoti.BaseRepository;
+import com.anynoti.common.BaseRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import javax.persistence.EntityManager;
 

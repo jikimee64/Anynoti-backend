@@ -1,4 +1,4 @@
-package com.anynoti;
+package com.anynoti.common;
 
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.Expression;

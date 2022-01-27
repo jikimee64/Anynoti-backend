@@ -1,4 +1,4 @@
-package com.anynoti.entity;
+package com.anynoti.animation;
 
 import com.anynoti.common.BaseTimeEntity;
 import com.anynoti.common.BooleanToYNConverter;

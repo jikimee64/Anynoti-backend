@@ -1,5 +1,6 @@
 package com.anynoti.user;
 
+import com.anynoti.animation.AnimationBox;
 import com.mysema.commons.lang.Assert;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,29 +15,55 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import com.anynoti.common.BaseTimeEntity;
+import com.anynoti.user.ProviderType;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@ToString
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50, updatable = false, unique = true)
     private String providerId;
-    @Column(nullable = false, length = 10)
+
+    //@Column(columnDefinition = "ENUM('GOOGLE')")
     @Enumerated(EnumType.STRING)
     private ProviderType providerType;
 
+    @OneToMany(mappedBy = "user")
+    private List<AnimationBox> animationBoxes = new ArrayList<>();
+
     @Builder
     public User(String providerId, ProviderType providerType) {
-        Assert.notNull(providerId, "providerId must not be null");
-        Assert.notNull(providerType, "providerType must not be null");
-
         this.providerId = providerId;
         this.providerType = providerType;
+    }
+
+    public void addAnimationBox(AnimationBox animationBox){
+        this.animationBoxes.add(animationBox);
+        if(animationBox.getUser() != this){
+            animationBox.setUser(this);
+        }
     }
 
 }

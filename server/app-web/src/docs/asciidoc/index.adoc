@@ -1,0 +1,29 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+
+= *Anynoti API Docs*
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+[[common]]
+== *공통 사항*
+=== 도메인
+
+|===
+| 환경 | domain
+
+| 운영 서버
+| `http://`
+|===
+
+include::login.adoc[]
+include::animation.adoc[]
+
+&#160;

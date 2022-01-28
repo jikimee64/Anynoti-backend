@@ -1,0 +1,15 @@
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+=== 구글 로그인
+==== Request
+include::{snippets}/oauth2/authorization/google/http-request.adoc[]
+==== Response
+include::{snippets}/oauth2/authorization/google/http-response.adoc[]
+include::{snippets}/oauth2/authorization/google/response-fields.adoc[]

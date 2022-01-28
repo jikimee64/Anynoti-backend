@@ -1,10 +1,10 @@
+
 plugins {
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 dependencies {
-    implementation("$boot:spring-boot-starter-data-jpa")
-
+    compile("$boot:spring-boot-starter-data-jpa")
     compile('com.querydsl:querydsl-jpa')
 }
 

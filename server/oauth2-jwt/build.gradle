@@ -7,7 +7,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     //jwt
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
-
 }
 
 processResources.dependsOn('copyOauth2Secret')
@@ -17,7 +16,6 @@ task copyOauth2Secret(type: Copy) {
         include 'application-oauth2.yml'
         include 'application-secret.yml'
         include 'application-real.yml'
-
     }
     into 'src/main/resources'
 }

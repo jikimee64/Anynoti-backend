@@ -1,0 +1,26 @@
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+=== TODO 애니메이션 조회
+==== Request
+include::{snippets}/animation/todos/http-request.adoc[]
+include::{snippets}/animation/todos/request-headers.adoc[]
+include::{snippets}/animation/todos/request-parameters.adoc[]
+==== Response
+include::{snippets}/animation/todos/http-response.adoc[]
+include::{snippets}/animation/todos/response-fields.adoc[]
+
+=== 애니메이션 검색
+==== Request
+include::{snippets}/animation/search/http-request.adoc[]
+include::{snippets}/animation/search/request-headers.adoc[]
+include::{snippets}/animation/search/request-parameters.adoc[]
+==== Response
+include::{snippets}/animation/search/http-response.adoc[]
+include::{snippets}/animation/search/response-fields.adoc[]

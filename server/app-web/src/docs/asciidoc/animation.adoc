@@ -24,3 +24,46 @@ include::{snippets}/animation/search/request-parameters.adoc[]
 ==== Response
 include::{snippets}/animation/search/http-response.adoc[]
 include::{snippets}/animation/search/response-fields.adoc[]
+
+=== 애니메이션 TODO 추가
+==== Request
+include::{snippets}/animation/addTodo/http-request.adoc[]
+include::{snippets}/animation/addTodo/request-headers.adoc[]
+include::{snippets}/animation/addTodo/request-fields.adoc[]
+==== Response
+include::{snippets}/animation/addTodo/http-response.adoc[]
+include::{snippets}/animation/search/response-fields.adoc[]
+
+=== 애니메이션 상세조회
+==== Request
+include::{snippets}/animation/detail/http-request.adoc[]
+include::{snippets}/animation/detail/request-headers.adoc[]
+include::{snippets}/animation/detail/request-body.adoc[]
+==== Response
+include::{snippets}/animation/detail/http-response.adoc[]
+include::{snippets}/animation/detail/response-fields.adoc[]
+
+=== 애니메이션 상세내용 수정
+==== Request
+include::{snippets}/animation/patchTodo/http-request.adoc[]
+include::{snippets}/animation/patchTodo/request-headers.adoc[]
+include::{snippets}/animation/patchTodo/request-fields.adoc[]
+==== Response
+include::{snippets}/animation/patchTodo/http-response.adoc[]
+include::{snippets}/animation/patchTodo/response-fields.adoc[]
+
+=== 애니메이션 북마크 수정
+==== Request
+include::{snippets}/animation/patchBookMarkAnimation/http-request.adoc[]
+include::{snippets}/animation/patchBookMarkAnimation/request-headers.adoc[]
+include::{snippets}/animation/patchBookMarkAnimation/request-fields.adoc[]
+==== Response
+include::{snippets}/animation/patchBookMarkAnimation/http-response.adoc[]
+
+=== 애니메이션 노티 수정
+==== Request
+include::{snippets}/animation/patchNotificationAnimation/http-request.adoc[]
+include::{snippets}/animation/patchNotificationAnimation/request-headers.adoc[]
+include::{snippets}/animation/patchNotificationAnimation/request-fields.adoc[]
+==== Response
+include::{snippets}/animation/patchNotificationAnimation/http-response.adoc[]

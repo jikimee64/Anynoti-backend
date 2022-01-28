@@ -2,10 +2,19 @@ package com.anynoti.animation.presentation;
 
 import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
+import com.anynoti.animation.dto.request.AddAnimationRequest;
+import com.anynoti.animation.dto.request.PatchAnimationRequest;
+import com.anynoti.animation.dto.request.PatchBookMarkRequest;
+import com.anynoti.animation.dto.request.PatchNotificationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +53,54 @@ public class AnimationController {
             .count(animationResponses.size())
             .build()
         );
+    }
+
+    //TODO: @LoginUser
+    @GetMapping("/{id}")
+    public ResponseEntity<AnimationResponse> findDetailAnimations(
+        @PathVariable("id") Integer id
+    ){
+        AnimationResponse animationResponses = animationService.findDetailAnimations();
+        return ResponseEntity.ok(animationResponses);
+    }
+
+    //TODO: @LoginUser
+    @PostMapping("/todos")
+    public ResponseEntity<Void> AddAnimations(
+        @RequestBody @Valid AddAnimationRequest addAnimationRequest
+    ){
+        animationService.AddAnimations(addAnimationRequest);
+        return ResponseEntity.noContent().build();
+    }
+
+    //TODO: @LoginUser
+    @PatchMapping("/todos/{id}")
+    public ResponseEntity<AnimationResponse> patchAnimation(
+        @PathVariable Integer id,
+        @RequestBody @Valid PatchAnimationRequest patchAnimationRequest
+    ){
+        AnimationResponse animationResponse = animationService.patchAnimation(patchAnimationRequest);
+        return ResponseEntity.ok(animationResponse);
+    }
+
+    //TODO: @LoginUser
+    @PatchMapping("/bookmarks/{id}")
+    public ResponseEntity<Void> patchAnimationOfBookMark(
+        @PathVariable Integer id,
+        @RequestBody @Valid PatchBookMarkRequest patchAnimationRequest
+    ){
+        animationService.patchAnimationOfBookMark(patchAnimationRequest);
+        return ResponseEntity.noContent().build();
+    }
+
+    //TODO: @LoginUser
+    @PatchMapping("/notifications/{id}")
+    public ResponseEntity<Void> patchAnimationOfNotification(
+        @PathVariable Integer id,
+        @RequestBody @Valid PatchNotificationRequest patchAnimationRequest
+    ){
+        animationService.patchAnimationOfNotification(patchAnimationRequest);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -2,12 +2,19 @@ package com.anynoti.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
+import com.anynoti.animation.dto.request.AddAnimationRequest;
+import com.anynoti.animation.dto.request.PatchAnimationRequest;
+import com.anynoti.animation.dto.request.PatchBookMarkRequest;
+import com.anynoti.animation.dto.request.PatchNotificationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import com.anynoti.documentation.AnimationDocumentation;
+import com.anynoti.dto.MockMvcDto;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -59,6 +66,95 @@ public class AnimationController extends BaseControllerTest{
 
         this.doGet(PREFIX_URL + "/search", params, responseBody)
             .andDo(AnimationDocumentation.findAnimations());
+    }
+
+    @Test
+    void findDetailAnimations() throws Exception {
+        AnimationResponse animationResponse = AnimationResponse.builder()
+            .id(1)
+            .title("제목")
+            .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
+            .recentEpisode(1)
+            .memo("메모다")
+            .bookMarked(true)
+            .notied(false)
+            .build();
+
+        given(animationService.findDetailAnimations()).willReturn(animationResponse);
+
+        String responseBody = objectMapper.writeValueAsString(animationResponse);
+
+        this.doGet(PREFIX_URL + "/1", new LinkedMultiValueMap<>(), responseBody)
+            .andDo(AnimationDocumentation.findDetailAnimations());
+    }
+
+    @Test
+    void addTodoAnimations() throws Exception {
+        AddAnimationRequest addAnimationRequest = new AddAnimationRequest();
+        addAnimationRequest.setId(1);
+
+        String requestBody = objectMapper.writeValueAsString(addAnimationRequest);
+
+        this.doPost(
+            MockMvcDto.of(PREFIX_URL + "/todos", requestBody, "",
+                status().isNoContent())
+            )
+            .andDo(AnimationDocumentation.addTodoAnimations());
+    }
+
+    @Test
+    void patchAnimation() throws Exception {
+        PatchAnimationRequest patchAnimationRequest = new PatchAnimationRequest();
+        patchAnimationRequest.setMemo("메모다@@");
+
+        AnimationResponse animationResponse = AnimationResponse.builder()
+            .id(1)
+            .title("제목")
+            .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
+            .recentEpisode(1)
+            .memo("메모다@@")
+            .bookMarked(true)
+            .notied(false)
+            .build();
+
+        given(animationService.patchAnimation(any())).willReturn(animationResponse);
+
+        String requestBody = objectMapper.writeValueAsString(patchAnimationRequest);
+        String responseBody = objectMapper.writeValueAsString(animationResponse);
+
+        this.doPatch(
+                MockMvcDto.of(PREFIX_URL + "/todos/1", requestBody, responseBody,
+                    status().isOk())
+            )
+            .andDo(AnimationDocumentation.patchAnimation());
+    }
+    
+    @Test
+    void patchAnimationOfBookMark() throws Exception {
+        PatchBookMarkRequest patchBookMarkRequest = new PatchBookMarkRequest();
+        patchBookMarkRequest.setBookmarked(false);
+
+        String requestBody = objectMapper.writeValueAsString(patchBookMarkRequest);
+
+        this.doPatch(
+                MockMvcDto.of(PREFIX_URL + "/bookmarks/1", requestBody, "",
+                    status().isNoContent())
+            )
+            .andDo(AnimationDocumentation.patchAnimationOfBookMark());
+    }
+
+    @Test
+    void patchAnimationOfNotification() throws Exception {
+        PatchNotificationRequest patchNotificationRequest = new PatchNotificationRequest();
+        patchNotificationRequest.setNotied(true);
+
+        String requestBody = objectMapper.writeValueAsString(patchNotificationRequest);
+
+        this.doPatch(
+                MockMvcDto.of(PREFIX_URL + "/notifications/1", requestBody, "",
+                    status().isNoContent())
+            )
+            .andDo(AnimationDocumentation.patchAnimationOfNotification());
     }
 
 }

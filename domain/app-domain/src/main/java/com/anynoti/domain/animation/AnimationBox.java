@@ -1,7 +1,10 @@
 package com.anynoti.domain.animation;
 
+import com.anynoti.domain.common.BooleanToYNConverter;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.common.BaseTimeEntity;
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -24,6 +27,14 @@ public class AnimationBox extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Convert(converter = BooleanToYNConverter.class)
+    @Column(nullable = false, columnDefinition = "N")
+    private boolean bookMarked;
+
+    @Convert(converter = BooleanToYNConverter.class)
+    @Column(nullable = false, columnDefinition = "N")
+    private boolean notied;
 
     @JoinColumn(name = "animation_id", nullable = false, foreignKey = @ForeignKey(name = "FK_animationbox_to_animation"))
     @ManyToOne

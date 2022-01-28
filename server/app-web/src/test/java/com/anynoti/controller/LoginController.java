@@ -14,14 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-public class LoginController extends BaseControllerTest{
-
+public class LoginController extends BaseControllerTest {
     private Map<String, String> map = new HashMap();
 
     @BeforeEach
     void init(){
-        map = new HashMap();
         map.put("accessToken",
             "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMTgyOTEzNjQ4MzcwMjcxMDU4MDBcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQzMzU1MTUyLCJleHAiOjE2NDM0NDE1NTJ9.CfEEIG5Sd-z6ABc1Rp7o3K5oKgwvRZhflA0O3CxcMap532yoD0CYmY39krk1j0FZcOTreHi72afhZKIeBGsjSA");
     }
@@ -31,8 +28,8 @@ public class LoginController extends BaseControllerTest{
         String responseBody = objectMapper.writeValueAsString(map);
 
         this.mockMvc.perform(get("/oauth2/authorization/google")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
             )
             .andDo(print())
             .andExpect(status().isOk())
@@ -41,8 +38,7 @@ public class LoginController extends BaseControllerTest{
     }
 
     @RestController
-    public static class TestLoginController {
-
+    static class TestLoginController {
         @GetMapping("/oauth2/authorization/google")
         public Map<String, String> login() {
             Map<String, String> map = new HashMap();
@@ -51,7 +47,6 @@ public class LoginController extends BaseControllerTest{
 
             return map;
         }
-
     }
 
 }

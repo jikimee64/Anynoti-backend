@@ -15,4 +15,7 @@ public class AnimationResponse {
     private String title;
     private Integer recentEpisode;
     private Boolean end;
+    private String memo;
+    private Boolean bookMarked;
+    private Boolean notied;
 }

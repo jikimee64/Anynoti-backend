@@ -16,7 +16,7 @@ public class LoginDocumentation {
             getDocumentRequest(),
             getDocumentResponse(),
             responseFields(
-                fieldWithPath("accessToken").type(STRING).description("Jwt access token")
+                fieldWithPath("access_token").type(STRING).description("Jwt access token")
             )
         );
     }

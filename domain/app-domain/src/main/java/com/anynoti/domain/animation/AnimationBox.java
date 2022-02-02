@@ -30,7 +30,7 @@ public class AnimationBox extends BaseTimeEntity {
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false, columnDefinition = "N")
-    private boolean bookMarked;
+    private boolean liked;
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false, columnDefinition = "N")

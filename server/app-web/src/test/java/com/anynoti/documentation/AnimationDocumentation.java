@@ -32,7 +32,7 @@ public class AnimationDocumentation {
                 fieldWithPath("animations.[].id").type(NUMBER).description(""),
                 fieldWithPath("animations.[].thumbnail").type(STRING).description(""),
                 fieldWithPath("animations.[].title").type(STRING).description(""),
-                fieldWithPath("animations.[].recentEpisode").type(NUMBER).description(""),
+                fieldWithPath("animations.[].recent_episode").type(NUMBER).description(""),
                 fieldWithPath("animations.[].end").type(BOOLEAN).description(""),
                 fieldWithPath("count").type(NUMBER).description("")
             )
@@ -65,8 +65,9 @@ public class AnimationDocumentation {
                 fieldWithPath("id").type(NUMBER).description(""),
                 fieldWithPath("title").type(STRING).description(""),
                 fieldWithPath("thumbnail").type(STRING).description(""),
-                fieldWithPath("recentEpisode").type(NUMBER).description(""),
-                fieldWithPath("bookMarked").type(BOOLEAN).description(""),
+                fieldWithPath("recent_episode").type(NUMBER).description(""),
+                fieldWithPath("recent_datetime").type(STRING).description("업로드된 최신화 날짜"),
+                fieldWithPath("liked").type(BOOLEAN).description(""),
                 fieldWithPath("notied").type(BOOLEAN).description(""),
                 fieldWithPath("memo").type(STRING).description("")
             )
@@ -90,14 +91,16 @@ public class AnimationDocumentation {
             getDocumentResponse(),
             requestHeaders(headerWithName(AUTHORIZATION).description("Jwt 토큰")),
             requestFields(
-                fieldWithPath("memo").description("")
+                fieldWithPath("memo").description(""),
+                fieldWithPath("liked").description(""),
+                fieldWithPath("notied").description("")
             ),
             responseFields(
                 fieldWithPath("id").type(NUMBER).description(""),
                 fieldWithPath("title").type(STRING).description(""),
                 fieldWithPath("thumbnail").type(STRING).description(""),
-                fieldWithPath("recentEpisode").type(NUMBER).description(""),
-                fieldWithPath("bookMarked").type(BOOLEAN).description(""),
+                fieldWithPath("recent_episode").type(NUMBER).description(""),
+                fieldWithPath("liked").type(BOOLEAN).description(""),
                 fieldWithPath("notied").type(BOOLEAN).description(""),
                 fieldWithPath("memo").type(STRING).description("")
             )
@@ -110,7 +113,7 @@ public class AnimationDocumentation {
             getDocumentResponse(),
             requestHeaders(headerWithName(AUTHORIZATION).description("Jwt 토큰")),
             requestFields(
-                fieldWithPath("bookmarked").description("노티 표시여부")
+                fieldWithPath("liked").description("좋아요 표시여부")
             )
         );
     }

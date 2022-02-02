@@ -48,7 +48,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         res.getWriter()
             .write(objectMapper.writeValueAsString(
                 TokenResDto.builder()
-                        .accessToken(jwtToken)
+                        .access_token(jwtToken)
                         .build()));
     }
 

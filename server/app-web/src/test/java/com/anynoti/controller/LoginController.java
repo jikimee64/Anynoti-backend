@@ -19,7 +19,7 @@ public class LoginController extends BaseControllerTest {
 
     @BeforeEach
     void init(){
-        map.put("accessToken",
+        map.put("access_token",
             "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMTgyOTEzNjQ4MzcwMjcxMDU4MDBcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQzMzU1MTUyLCJleHAiOjE2NDM0NDE1NTJ9.CfEEIG5Sd-z6ABc1Rp7o3K5oKgwvRZhflA0O3CxcMap532yoD0CYmY39krk1j0FZcOTreHi72afhZKIeBGsjSA");
     }
 
@@ -42,7 +42,7 @@ public class LoginController extends BaseControllerTest {
         @GetMapping("/oauth2/authorization/google")
         public Map<String, String> login() {
             Map<String, String> map = new HashMap();
-            map.put("accessToken",
+            map.put("access_token",
                 "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMTgyOTEzNjQ4MzcwMjcxMDU4MDBcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQzMzU1MTUyLCJleHAiOjE2NDM0NDE1NTJ9.CfEEIG5Sd-z6ABc1Rp7o3K5oKgwvRZhflA0O3CxcMap532yoD0CYmY39krk1j0FZcOTreHi72afhZKIeBGsjSA");
 
             return map;

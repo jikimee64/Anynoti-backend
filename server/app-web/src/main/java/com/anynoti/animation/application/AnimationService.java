@@ -2,8 +2,6 @@ package com.anynoti.animation.application;
 
 import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
-import com.anynoti.animation.dto.request.PatchBookMarkRequest;
-import com.anynoti.animation.dto.request.PatchNotificationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import java.util.Collections;
 import java.util.List;
@@ -26,14 +24,6 @@ public class AnimationService {
 
     public AnimationResponse findDetailAnimations() {
         return AnimationResponse.builder().build();
-    }
-
-    public void patchAnimationOfBookMark(PatchBookMarkRequest patchBookMarkRequest) {
-
-    }
-
-    public void patchAnimationOfNotification(PatchNotificationRequest patchNotificationRequest){
-
     }
 
     public AnimationResponse patchAnimation(PatchAnimationRequest patchAnimationRequest) {

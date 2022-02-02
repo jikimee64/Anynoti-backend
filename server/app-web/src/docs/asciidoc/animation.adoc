@@ -51,19 +51,3 @@ include::{snippets}/animation/patchTodo/request-fields.adoc[]
 ==== Response
 include::{snippets}/animation/patchTodo/http-response.adoc[]
 include::{snippets}/animation/patchTodo/response-fields.adoc[]
-
-=== 애니메이션 북마크 수정
-==== Request
-include::{snippets}/animation/patchBookMarkAnimation/http-request.adoc[]
-include::{snippets}/animation/patchBookMarkAnimation/request-headers.adoc[]
-include::{snippets}/animation/patchBookMarkAnimation/request-fields.adoc[]
-==== Response
-include::{snippets}/animation/patchBookMarkAnimation/http-response.adoc[]
-
-=== 애니메이션 노티 수정
-==== Request
-include::{snippets}/animation/patchNotificationAnimation/http-request.adoc[]
-include::{snippets}/animation/patchNotificationAnimation/request-headers.adoc[]
-include::{snippets}/animation/patchNotificationAnimation/request-fields.adoc[]
-==== Response
-include::{snippets}/animation/patchNotificationAnimation/http-response.adoc[]

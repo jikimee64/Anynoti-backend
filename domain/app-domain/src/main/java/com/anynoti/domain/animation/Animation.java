@@ -1,8 +1,9 @@
 package com.anynoti.domain.animation;
 
+import com.anynoti.domain.common.BaseTimeEntity;
 import com.anynoti.domain.common.BooleanToYNConverter;
 import com.anynoti.domain.user.ProviderType;
-import com.anynoti.domain.common.BaseTimeEntity;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -38,6 +39,9 @@ public class Animation extends BaseTimeEntity {
 
     @Column(nullable = false)
     private Integer recentEpisode;
+
+    @Column(nullable = false)
+    private LocalDateTime recentDatetime;
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false, columnDefinition = "N")

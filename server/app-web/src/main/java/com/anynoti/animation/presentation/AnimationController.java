@@ -4,8 +4,6 @@ import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
 import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
-import com.anynoti.animation.dto.request.PatchBookMarkRequest;
-import com.anynoti.animation.dto.request.PatchNotificationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import java.util.List;
 import javax.validation.Valid;
@@ -81,26 +79,6 @@ public class AnimationController {
     ){
         AnimationResponse animationResponse = animationService.patchAnimation(patchAnimationRequest);
         return ResponseEntity.ok(animationResponse);
-    }
-
-    //TODO: @LoginUser
-    @PatchMapping("/bookmarks/{id}")
-    public ResponseEntity<Void> patchAnimationOfBookMark(
-        @PathVariable Integer id,
-        @RequestBody @Valid PatchBookMarkRequest patchAnimationRequest
-    ){
-        animationService.patchAnimationOfBookMark(patchAnimationRequest);
-        return ResponseEntity.noContent().build();
-    }
-
-    //TODO: @LoginUser
-    @PatchMapping("/notifications/{id}")
-    public ResponseEntity<Void> patchAnimationOfNotification(
-        @PathVariable Integer id,
-        @RequestBody @Valid PatchNotificationRequest patchAnimationRequest
-    ){
-        animationService.patchAnimationOfNotification(patchAnimationRequest);
-        return ResponseEntity.noContent().build();
     }
 
 }

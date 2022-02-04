@@ -23,6 +23,18 @@ endif::[]
 | `http://`
 |===
 
+=== 웹소켓
+|===
+| 종류 | 도메인 | 비고
+
+| 웹소켓 연결
+| `http://{{domain}}/websocket-connect`
+| Header에 토큰값 추가 후 연결
+| 웹소켓 연결 후 구독
+| `http://{{domain}}/topic/animations/alarm/{provider_id}`
+|
+|===
+
 include::login.adoc[]
 include::animation.adoc[]
 

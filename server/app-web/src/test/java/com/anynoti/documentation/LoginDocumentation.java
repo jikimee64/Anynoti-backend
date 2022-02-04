@@ -16,7 +16,8 @@ public class LoginDocumentation {
             getDocumentRequest(),
             getDocumentResponse(),
             responseFields(
-                fieldWithPath("access_token").type(STRING).description("Jwt access token")
+                fieldWithPath("access_token").type(STRING).description("Jwt access token"),
+                fieldWithPath("provider_id").type(STRING).description("Google Oauth 에서 발급받은 고유 아이디값")
             )
         );
     }

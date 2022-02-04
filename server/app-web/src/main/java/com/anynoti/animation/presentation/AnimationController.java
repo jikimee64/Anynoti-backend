@@ -2,8 +2,8 @@ package com.anynoti.animation.presentation;
 
 import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
-import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
+import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import java.util.List;
 import javax.validation.Valid;

@@ -1,6 +1,0 @@
-
-apply from: "../server-common.gradle"
-
-dependencies {
-    implementation ("$boot:spring-boot-starter-websocket")
-}

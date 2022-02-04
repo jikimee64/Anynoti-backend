@@ -435,6 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#common"><strong>공통 사항</strong></a>
 <ul class="sectlevel2">
 <li><a href="#_도메인">도메인</a></li>
+<li><a href="#_웹소켓">웹소켓</a></li>
 <li><a href="#_구글_로그인">구글 로그인</a>
 <ul class="sectlevel3">
 <li><a href="#_request">Request</a></li>
@@ -502,6 +503,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
+<h3 id="_웹소켓"><a class="link" href="#_웹소켓">웹소켓</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">종류</th>
+<th class="tableblock halign-left valign-top">도메인</th>
+<th class="tableblock halign-left valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">웹소켓 연결</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://{{domain}}/websocket-connect" class="bare">http://{{domain}}/websocket-connect</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Header에 토큰값 추가 후 연결</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">웹소켓 연결 후 구독</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://{{domain}}/topic/animations/alarm/{provider_id}" class="bare">http://{{domain}}/topic/animations/alarm/{provider_id}</a></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="_구글_로그인"><a class="link" href="#_구글_로그인">구글 로그인</a></h3>
 <div class="sect3">
 <h4 id="_request"><a class="link" href="#_request">Request</a></h4>
@@ -523,10 +553,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 287
+Content-Length: 318
 
 {
-  "access_token" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMTgyOTEzNjQ4MzcwMjcxMDU4MDBcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQzMzU1MTUyLCJleHAiOjE2NDM0NDE1NTJ9.CfEEIG5Sd-z6ABc1Rp7o3K5oKgwvRZhflA0O3CxcMap532yoD0CYmY39krk1j0FZcOTreHi72afhZKIeBGsjSA"
+  "access_token" : "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMTgyOTEzNjQ4MzcwMjcxMDU4MDBcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQzMzU1MTUyLCJleHAiOjE2NDM0NDE1NTJ9.CfEEIG5Sd-z6ABc1Rp7o3K5oKgwvRZhflA0O3CxcMap532yoD0CYmY39krk1j0FZcOTreHi72afhZKIeBGsjSA",
+  "provider_id" : "12324455"
 }</code></pre>
 </div>
 </div>
@@ -548,6 +579,11 @@ Content-Length: 287
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>access_token</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jwt access token</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>provider_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Oauth 에서 발급받은 고유 아이디값</p></td>
 </tr>
 </tbody>
 </table>
@@ -1170,7 +1206,7 @@ Content-Length: 223
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-01-28 17:31:39 KST
+Last updated 2022-02-05 05:37:59 KST
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

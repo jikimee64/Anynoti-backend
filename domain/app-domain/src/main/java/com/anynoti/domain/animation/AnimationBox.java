@@ -1,8 +1,8 @@
 package com.anynoti.domain.animation;
 
+import com.anynoti.domain.common.BaseTimeEntity;
 import com.anynoti.domain.common.BooleanToYNConverter;
 import com.anynoti.domain.user.User;
-import com.anynoti.domain.common.BaseTimeEntity;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;

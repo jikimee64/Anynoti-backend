@@ -1,7 +1,7 @@
 package com.anynoti.animation.application;
 
-import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
+import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import java.util.Collections;
 import java.util.List;

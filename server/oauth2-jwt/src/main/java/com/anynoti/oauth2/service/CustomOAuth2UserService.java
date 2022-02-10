@@ -3,7 +3,7 @@ package com.anynoti.oauth2.service;
 import com.anynoti.oauth2.attributes.Oauth2Attributes;
 import com.anynoti.oauth2.attributes.Oauth2Factory;
 import com.anynoti.oauth2.attributes.UserAttributes;
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.user.UserRepository;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

@@ -1,10 +1,13 @@
 package com.anynoti.animation.presentation;
 
+import com.anynoti.AuthenticationPrincipal;
+import com.anynoti.LoginUser;
 import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
 import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
+import com.anynoti.common.enums.SearchKind;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +30,10 @@ public class AnimationController {
         this.animationService = animationService;
     }
 
-    //TODO: @LoginUser
     @GetMapping("/todos")
     public ResponseEntity<AnimationWrapper> findTodoAnimations(
-        @RequestParam String kind //TODO: enum(todo, noti, like)
+        @AuthenticationPrincipal LoginUser loginUser,
+        @RequestParam SearchKind kind
     ){
         List<AnimationResponse> animationResponses = animationService.findTodoAnimations("");
         return ResponseEntity.ok(AnimationWrapper.<List<AnimationResponse>>builder()
@@ -53,7 +56,7 @@ public class AnimationController {
         );
     }
 
-    //TODO: @LoginUser
+    //TODO: @AuthenticationPrincipal
     @GetMapping("/{id}")
     public ResponseEntity<AnimationResponse> findDetailAnimations(
         @PathVariable("id") Integer id
@@ -62,7 +65,7 @@ public class AnimationController {
         return ResponseEntity.ok(animationResponses);
     }
 
-    //TODO: @LoginUser
+    //TODO: @AuthenticationPrincipal
     @PostMapping("/todos")
     public ResponseEntity<Void> AddAnimations(
         @RequestBody @Valid AddAnimationRequest addAnimationRequest
@@ -71,7 +74,7 @@ public class AnimationController {
         return ResponseEntity.noContent().build();
     }
 
-    //TODO: @LoginUser
+    //TODO: @AuthenticationPrincipal
     @PatchMapping("/todos/{id}")
     public ResponseEntity<AnimationResponse> patchAnimation(
         @PathVariable Integer id,

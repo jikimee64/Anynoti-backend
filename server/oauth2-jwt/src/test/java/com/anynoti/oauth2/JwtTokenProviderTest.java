@@ -1,13 +1,13 @@
-package com.anynoti.websocket.oauth2;
+package com.anynoti.oauth2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import com.anynoti.domain.user.ProviderType;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.user.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.anynoti.enums.ProviderType;
 import com.anynoti.oauth2.provider.JwtTokenProvider;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.LocalDateTime;

@@ -1,6 +1,7 @@
 package com.anynoti.domain.user;
 
 import com.anynoti.domain.animation.AnimationBox;
+import com.anynoti.enums.ProviderType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

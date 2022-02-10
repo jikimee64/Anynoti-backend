@@ -1,6 +1,6 @@
 package com.anynoti.oauth2.provider;
 
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import com.anynoti.oauth2.dto.JwtPayloadDto;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.user.UserRepository;

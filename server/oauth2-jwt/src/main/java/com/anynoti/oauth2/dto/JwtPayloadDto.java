@@ -1,6 +1,6 @@
 package com.anynoti.oauth2.dto;
 
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

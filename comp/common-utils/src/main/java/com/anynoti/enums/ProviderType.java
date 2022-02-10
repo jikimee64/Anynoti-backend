@@ -1,4 +1,4 @@
-package com.anynoti.domain.user;
+package com.anynoti.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

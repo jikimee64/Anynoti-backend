@@ -1,6 +1,6 @@
 package com.anynoti.oauth2.attributes;
 
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import java.util.Map;
 
 public class Oauth2Factory {

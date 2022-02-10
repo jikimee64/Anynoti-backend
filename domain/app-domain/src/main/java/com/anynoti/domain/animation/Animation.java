@@ -2,7 +2,7 @@ package com.anynoti.domain.animation;
 
 import com.anynoti.domain.common.BaseTimeEntity;
 import com.anynoti.domain.common.BooleanToYNConverter;
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

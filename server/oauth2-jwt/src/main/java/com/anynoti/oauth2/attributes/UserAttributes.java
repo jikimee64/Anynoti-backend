@@ -1,6 +1,6 @@
 package com.anynoti.oauth2.attributes;
 
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import com.anynoti.domain.user.User;
 import java.util.Collection;
 import java.util.Map;

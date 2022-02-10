@@ -1,4 +1,4 @@
-package com.anynoti.oauith2.web;
+package com.anynoti.oauth2.web;
 
 public enum AuthorizationType {
     BEARER;

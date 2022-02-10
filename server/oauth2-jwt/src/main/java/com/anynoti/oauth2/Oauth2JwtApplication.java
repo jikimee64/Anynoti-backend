@@ -1,4 +1,4 @@
-package com.anynoti.oauith2;
+package com.anynoti.oauth2;
 
 import java.util.TimeZone;
 import javax.annotation.PostConstruct;

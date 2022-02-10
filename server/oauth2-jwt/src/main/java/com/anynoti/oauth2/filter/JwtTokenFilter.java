@@ -1,6 +1,6 @@
-package com.anynoti.oauith2.filter;
+package com.anynoti.oauth2.filter;
 
-import com.anynoti.oauith2.provider.JwtTokenProvider;
+import com.anynoti.oauth2.provider.JwtTokenProvider;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.Optional;

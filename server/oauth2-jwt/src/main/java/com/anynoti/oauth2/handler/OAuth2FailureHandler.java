@@ -1,4 +1,4 @@
-package com.anynoti.oauith2.handler;
+package com.anynoti.oauth2.handler;
 
 import com.anynoti.ExceptionResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;

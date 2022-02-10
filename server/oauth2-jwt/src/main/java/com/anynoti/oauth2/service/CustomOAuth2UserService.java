@@ -1,8 +1,8 @@
-package com.anynoti.oauith2.service;
+package com.anynoti.oauth2.service;
 
-import com.anynoti.oauith2.attributes.Oauth2Attributes;
-import com.anynoti.oauith2.attributes.Oauth2Factory;
-import com.anynoti.oauith2.attributes.UserAttributes;
+import com.anynoti.oauth2.attributes.Oauth2Attributes;
+import com.anynoti.oauth2.attributes.Oauth2Factory;
+import com.anynoti.oauth2.attributes.UserAttributes;
 import com.anynoti.domain.user.ProviderType;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.user.UserRepository;

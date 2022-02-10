@@ -1,11 +1,11 @@
-package com.anynoti.oauith2.provider;
+package com.anynoti.oauth2.provider;
 
 import com.anynoti.domain.user.ProviderType;
-import com.anynoti.oauith2.dto.JwtPayloadDto;
+import com.anynoti.oauth2.dto.JwtPayloadDto;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.user.UserRepository;
-import com.anynoti.oauith2.web.AuthorizationExtractor;
-import com.anynoti.oauith2.web.AuthorizationType;
+import com.anynoti.oauth2.web.AuthorizationExtractor;
+import com.anynoti.oauth2.web.AuthorizationType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;

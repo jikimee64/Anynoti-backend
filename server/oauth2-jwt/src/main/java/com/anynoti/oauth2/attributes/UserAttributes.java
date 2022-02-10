@@ -1,4 +1,4 @@
-package com.anynoti.oauith2.attributes;
+package com.anynoti.oauth2.attributes;
 
 import com.anynoti.domain.user.ProviderType;
 import com.anynoti.domain.user.User;

@@ -1,8 +1,8 @@
-package com.anynoti.oauith2.handler;
+package com.anynoti.oauth2.handler;
 
-import com.anynoti.oauith2.provider.JwtTokenProvider;
+import com.anynoti.oauth2.provider.JwtTokenProvider;
 import com.anynoti.domain.user.ProviderType;
-import com.anynoti.oauith2.dto.TokenResDto;
+import com.anynoti.oauth2.dto.TokenResDto;
 import com.anynoti.domain.user.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;

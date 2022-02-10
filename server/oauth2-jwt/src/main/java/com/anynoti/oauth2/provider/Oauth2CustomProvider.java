@@ -1,4 +1,4 @@
-package com.anynoti.oauith2.provider;
+package com.anynoti.oauth2.provider;
 
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;

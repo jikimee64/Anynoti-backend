@@ -7,7 +7,7 @@ import com.anynoti.domain.user.ProviderType;
 import com.anynoti.domain.user.User;
 import com.anynoti.domain.user.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.anynoti.oauith2.provider.JwtTokenProvider;
+import com.anynoti.oauth2.provider.JwtTokenProvider;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.LocalDateTime;

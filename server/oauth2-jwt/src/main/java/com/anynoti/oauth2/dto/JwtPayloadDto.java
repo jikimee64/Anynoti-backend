@@ -1,4 +1,4 @@
-package com.anynoti.oauith2.dto;
+package com.anynoti.oauth2.dto;
 
 import com.anynoti.domain.user.ProviderType;
 import lombok.AllArgsConstructor;

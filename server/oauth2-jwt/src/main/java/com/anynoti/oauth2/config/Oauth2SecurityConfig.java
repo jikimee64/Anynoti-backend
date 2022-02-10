@@ -1,11 +1,11 @@
-package com.anynoti.oauith2.config;
+package com.anynoti.oauth2.config;
 
-import com.anynoti.oauith2.filter.JwtTokenFilter;
-import com.anynoti.oauith2.handler.OAuth2FailureHandler;
-import com.anynoti.oauith2.handler.OAuth2SuccessHandler;
-import com.anynoti.oauith2.provider.JwtTokenProvider;
-import com.anynoti.oauith2.provider.Oauth2CustomProvider;
-import com.anynoti.oauith2.service.CustomOAuth2UserService;
+import com.anynoti.oauth2.filter.JwtTokenFilter;
+import com.anynoti.oauth2.handler.OAuth2FailureHandler;
+import com.anynoti.oauth2.handler.OAuth2SuccessHandler;
+import com.anynoti.oauth2.provider.JwtTokenProvider;
+import com.anynoti.oauth2.provider.Oauth2CustomProvider;
+import com.anynoti.oauth2.service.CustomOAuth2UserService;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

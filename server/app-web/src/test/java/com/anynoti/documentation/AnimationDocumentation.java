@@ -33,8 +33,7 @@ public class AnimationDocumentation {
                 fieldWithPath("animations.[].thumbnail").type(STRING).description(""),
                 fieldWithPath("animations.[].title").type(STRING).description(""),
                 fieldWithPath("animations.[].recent_episode").type(NUMBER).description(""),
-                fieldWithPath("animations.[].end").type(BOOLEAN).description(""),
-                fieldWithPath("count").type(NUMBER).description("")
+                fieldWithPath("animations.[].end").type(BOOLEAN).description("")
             )
         );
     }
@@ -50,8 +49,7 @@ public class AnimationDocumentation {
             responseFields(
                 fieldWithPath("animations.[].id").type(NUMBER).description(""),
                 fieldWithPath("animations.[].thumbnail").type(STRING).description(""),
-                fieldWithPath("animations.[].title").type(STRING).description(""),
-                fieldWithPath("count").type(NUMBER).description("")
+                fieldWithPath("animations.[].title").type(STRING).description("")
             )
         );
     }

@@ -1,29 +1,37 @@
 package com.anynoti.auth.application;
 
 import com.anynoti.LoginUser;
-import com.anynoti.oauth2.dto.JwtPayloadDto;
-import com.anynoti.oauth2.provider.JwtTokenProvider;
+import com.anynoti.enums.appweb.DevEnvironment;
+import com.anynoti.exception.auth.InvalidTokenException;
+import com.anynoti.jwt.JwtPayloadDto;
+import com.anynoti.jwt.JwtTokenProvider;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+
 @Service
-public class AuthService {
+public abstract class AuthService {
 
     private JwtTokenProvider jwtTokenProvider;
 
-    public AuthService(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
+    public void setJwtTokenProvider(String secretKey, Long expireSeconds){
+        this.jwtTokenProvider = new JwtTokenProvider(
+            new ObjectMapper(),
+            secretKey,
+            expireSeconds
+        );
     }
 
     public LoginUser findRequestUserByToken(HttpServletRequest request)
         throws JsonProcessingException {
         //TODO: enum? static final?
-        String authentication = (String) request.getAttribute("Authentication");
-
+        String authentication = request.getHeader("Authorization");
         if(Objects.isNull(authentication)){
-            //TODO: 예외처리
+            //TODO: 예외처리, enum으로 대체
+            throw new InvalidTokenException("토큰이 존재하지 않습니다.");
         }
 
         String jwtToken = jwtTokenProvider.extractToken(request);
@@ -34,4 +42,7 @@ public class AuthService {
             .providerType(jwtPayloadDto.getProviderType())
             .build();
     }
+
+    abstract DevEnvironment getEnvironment();
+
 }

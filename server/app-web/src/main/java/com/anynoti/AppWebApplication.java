@@ -7,11 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-//@SpringBootApplication
 @SpringBootApplication(scanBasePackages = {
     "com.anynoti",
 })
-//@ComponentScan({ "com.anynoti"})
 @EntityScan(basePackages = {"com.anynoti.domain"})
 @EnableJpaRepositories(basePackages = "com.anynoti.domain")
 public class AppWebApplication {

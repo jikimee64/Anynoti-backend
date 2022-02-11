@@ -1,4 +1,4 @@
-package com.anynoti.oauth2.dto;
+package com.anynoti.jwt;
 
 import com.anynoti.enums.ProviderType;
 import lombok.AllArgsConstructor;

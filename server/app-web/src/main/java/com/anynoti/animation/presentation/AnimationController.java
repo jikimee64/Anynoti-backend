@@ -4,10 +4,10 @@ import com.anynoti.AuthenticationPrincipal;
 import com.anynoti.LoginUser;
 import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
-import com.anynoti.animation.dto.request.PatchAnimationRequest;
 import com.anynoti.animation.dto.request.AddAnimationRequest;
+import com.anynoti.animation.dto.request.PatchAnimationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
-import com.anynoti.common.enums.SearchKind;
+import com.anynoti.enums.appweb.SearchKind;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +33,12 @@ public class AnimationController {
     @GetMapping("/todos")
     public ResponseEntity<AnimationWrapper> findTodoAnimations(
         @AuthenticationPrincipal LoginUser loginUser,
-        @RequestParam SearchKind kind
+        @RequestParam(name = "kind", defaultValue = "TODO", required = false) SearchKind searchKind
     ){
-        List<AnimationResponse> animationResponses = animationService.findTodoAnimations("");
+        System.out.println("Lopgin" + loginUser.getProviderId());
+        List<AnimationResponse> animationResponses = animationService.findTodoAnimations(loginUser, searchKind);
         return ResponseEntity.ok(AnimationWrapper.<List<AnimationResponse>>builder()
             .content(animationResponses)
-            .count(animationResponses.size())
             .build()
         );
     }
@@ -51,7 +51,6 @@ public class AnimationController {
         return ResponseEntity.ok(
             AnimationWrapper.<List<AnimationResponse>>builder()
             .content(animationResponses)
-            .count(animationResponses.size())
             .build()
         );
     }

@@ -9,8 +9,8 @@ import com.anynoti.animation.dto.AnimationWrapper;
 import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
-import com.anynoti.dto.MockMvcDto;
 import com.anynoti.documentation.AnimationDocumentation;
+import com.anynoti.dto.MockMvcDto;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -31,11 +31,10 @@ public class AnimationControllerTest extends BaseControllerTest{
     @MethodSource("com.anynoti.fixture.AnimationFixture#findTodoAnimationsResponse")
     void findTodoAnimations(List<AnimationResponse> animationResponses) throws Exception {
 
-        given(animationService.findTodoAnimations(any())).willReturn(animationResponses);
+        given(animationService.findTodoAnimations(any(), any())).willReturn(animationResponses);
 
         AnimationWrapper<List<AnimationResponse>> animationWrapper = AnimationWrapper.<List<AnimationResponse>>builder()
             .content(animationResponses)
-            .count(animationResponses.size())
             .build();
 
         String responseBody = objectMapper.writeValueAsString(animationWrapper);
@@ -55,7 +54,6 @@ public class AnimationControllerTest extends BaseControllerTest{
 
         AnimationWrapper<List<AnimationResponse>> animationWrapper = AnimationWrapper.<List<AnimationResponse>>builder()
             .content(animationResponses)
-            .count(animationResponses.size())
             .build();
 
         String responseBody = objectMapper.writeValueAsString(animationWrapper);
@@ -70,7 +68,7 @@ public class AnimationControllerTest extends BaseControllerTest{
     @Test
     void findDetailAnimations() throws Exception {
         AnimationResponse animationResponse = AnimationResponse.builder()
-            .id(1)
+            .id(1L)
             .title("제목")
             .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
             .recent_episode(1)
@@ -110,7 +108,7 @@ public class AnimationControllerTest extends BaseControllerTest{
         patchAnimationRequest.setNotied(false);
 
         AnimationResponse animationResponse = AnimationResponse.builder()
-            .id(1)
+            .id(1L)
             .title("제목")
             .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
             .recent_episode(1)

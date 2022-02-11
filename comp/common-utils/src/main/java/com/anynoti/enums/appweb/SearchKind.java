@@ -1,5 +1,6 @@
-package com.anynoti.common.enums;
+package com.anynoti.enums.appweb;
 
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,5 +15,12 @@ public enum SearchKind implements Constant{
     LIKE("like");
 
     private final String kind;
+
+    public static SearchKind findSearchKind(SearchKind param){
+        return Arrays.stream(SearchKind.values())
+            .filter(searchKind -> searchKind == param)
+            .findAny()
+            .orElse(SearchKind.TODO);
+    }
 
 }

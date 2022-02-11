@@ -1,6 +1,6 @@
 package com.anynoti.config.custom;
 
-import com.anynoti.common.enums.Constant;
+import com.anynoti.enums.appweb.Constant;
 import java.util.Arrays;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;

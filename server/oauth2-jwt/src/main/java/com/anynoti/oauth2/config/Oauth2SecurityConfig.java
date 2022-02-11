@@ -1,9 +1,8 @@
 package com.anynoti.oauth2.config;
 
-import com.anynoti.oauth2.filter.JwtTokenFilter;
+import com.anynoti.jwt.JwtTokenProvider;
 import com.anynoti.oauth2.handler.OAuth2FailureHandler;
 import com.anynoti.oauth2.handler.OAuth2SuccessHandler;
-import com.anynoti.oauth2.provider.JwtTokenProvider;
 import com.anynoti.oauth2.provider.Oauth2CustomProvider;
 import com.anynoti.oauth2.service.CustomOAuth2UserService;
 import java.util.List;
@@ -20,7 +19,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
-import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.web.cors.CorsConfiguration;
@@ -71,9 +69,9 @@ public class Oauth2SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .successHandler(oAuth2SuccessHandler)
             .failureHandler(oAuth2FailureHandler)
-            .and()
-            .addFilterBefore(new JwtTokenFilter(jwtTokenProvider),
-                OAuth2LoginAuthenticationFilter.class);
+            .and();
+//            .addFilterBefore(new JwtTokenFilter(jwtTokenProvider),
+//                OAuth2LoginAuthenticationFilter.class);
     }
 
     @Bean

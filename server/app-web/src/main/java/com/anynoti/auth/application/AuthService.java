@@ -1,7 +1,7 @@
 package com.anynoti.auth.application;
 
 import com.anynoti.LoginUser;
-import com.anynoti.enums.appweb.DevEnvironment;
+import com.anynoti.common.JwtProperties;
 import com.anynoti.exception.auth.InvalidTokenException;
 import com.anynoti.jwt.JwtPayloadDto;
 import com.anynoti.jwt.JwtTokenProvider;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public abstract class AuthService {
+public class AuthService {
 
     private JwtTokenProvider jwtTokenProvider;
 
-    public void setJwtTokenProvider(String secretKey, Long expireSeconds){
+    public AuthService(JwtProperties jwtProperties) {
         this.jwtTokenProvider = new JwtTokenProvider(
             new ObjectMapper(),
-            secretKey,
-            expireSeconds
+            jwtProperties.getSecretKey(),
+            jwtProperties.getExpireSeconds()
         );
     }
 
@@ -42,7 +42,5 @@ public abstract class AuthService {
             .providerType(jwtPayloadDto.getProviderType())
             .build();
     }
-
-    abstract DevEnvironment getEnvironment();
 
 }

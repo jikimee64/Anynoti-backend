@@ -1,6 +1,6 @@
 package com.anynoti.auth.interceptor;
 
-import com.anynoti.auth.application.AuthServiceProduction;
+import com.anynoti.auth.application.AuthService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
@@ -8,9 +8,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class AuthInterceptors implements HandlerInterceptor {
 
-    AuthServiceProduction authService;
+    AuthService authService;
 
-    public AuthInterceptors(AuthServiceProduction authService) {
+    public AuthInterceptors(AuthService authService) {
         this.authService = authService;
     }
 

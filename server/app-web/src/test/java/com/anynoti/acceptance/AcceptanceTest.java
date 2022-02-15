@@ -27,8 +27,8 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles({"test"})
 public abstract class AcceptanceTest {
 
-    //TODO: 2월 11일 1시 40분 발급, 한달짜리 테스트 토큰
-    private static final String JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMDA4ODU1MDgwNTMxNzE2ODI1MTdcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQ0NTU0NTE4LCJleHAiOjE2NDQ2NDA5MTh9.adOQuPLG7-auer45nhe1Nf6ED7eiEroa23FhwrldZS0NK8tBcEoY5f-FUlp6bN3Rsbs7CzqaikRcm7VU5aunTQ";
+    //TODO: 2월 15일 22시 45분 발급, 한달짜리 테스트 토큰
+    private static final String JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMDA4ODU1MDgwNTMxNzE2ODI1MTdcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQ0OTMyNjkxLCJleHAiOjE4MDA0NTI2OTF9.SME1C1JdkIyJiWBeROrghW0EyoaCiSLTgh5euaWhBevaOG0wXZNhagl4Kwt1WBk2jJxxhVxJTX1C_amtFvFeqA";
 
     @Autowired
     protected ObjectMapper objectMapper;

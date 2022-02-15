@@ -29,7 +29,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class Oauth2SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final JwtTokenProvider jwtTokenProvider;
+    //private final JwtTokenProvider jwtTokenProvider;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
     private final OAuth2FailureHandler oAuth2FailureHandler;
@@ -39,11 +39,9 @@ public class Oauth2SecurityConfig extends WebSecurityConfigurerAdapter {
         "/animation"
     };
 
-    public Oauth2SecurityConfig(JwtTokenProvider jwtTokenProvider,
-        CustomOAuth2UserService customOAuth2UserService,
+    public Oauth2SecurityConfig(CustomOAuth2UserService customOAuth2UserService,
         OAuth2SuccessHandler oAuth2SuccessHandler,
         OAuth2FailureHandler oAuth2FailureHandler) {
-        this.jwtTokenProvider = jwtTokenProvider;
         this.customOAuth2UserService = customOAuth2UserService;
         this.oAuth2SuccessHandler = oAuth2SuccessHandler;
         this.oAuth2FailureHandler = oAuth2FailureHandler;

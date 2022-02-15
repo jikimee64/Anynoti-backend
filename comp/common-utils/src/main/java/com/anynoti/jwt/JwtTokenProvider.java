@@ -34,7 +34,7 @@ public class JwtTokenProvider {
     public String createToken(String providerId, ProviderType providerType)
         throws JsonProcessingException {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expiredAt = now.plus(expireSeconds, ChronoUnit.MILLIS);
+        LocalDateTime expiredAt = now.plus(expireSeconds, ChronoUnit.MINUTES);
         JwtPayloadDto jwtPayloadDto = JwtPayloadDto.builder()
             .providerId(providerId)
             .providerType(providerType)

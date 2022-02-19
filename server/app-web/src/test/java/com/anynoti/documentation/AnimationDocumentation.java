@@ -76,10 +76,7 @@ public class AnimationDocumentation {
         return document("/animation/addTodo",
             getDocumentRequest(),
             getDocumentResponse(),
-            requestHeaders(headerWithName(AUTHORIZATION).description("Jwt 토큰")),
-            requestFields(
-                fieldWithPath("id").description("animation index")
-            )
+            requestHeaders(headerWithName(AUTHORIZATION).description("Jwt 토큰"))
         );
     }
 

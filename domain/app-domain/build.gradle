@@ -6,6 +6,7 @@ plugins {
 dependencies {
     compile("$boot:spring-boot-starter-data-jpa")
     compile('com.querydsl:querydsl-jpa')
+    compile project(":comp-common-utils");
 }
 
 //querydsl stasrt

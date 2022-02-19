@@ -1,7 +1,7 @@
 package com.anynoti.websocket.config;
 
-import com.anynoti.oauith2.dto.JwtPayloadDto;
-import com.anynoti.oauith2.provider.JwtTokenProvider;
+import com.anynoti.jwt.JwtPayloadDto;
+import com.anynoti.jwt.JwtTokenProvider;
 import com.anynoti.websocket.alarm.Scheduler;
 import com.anynoti.websocket.common.BeanUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;

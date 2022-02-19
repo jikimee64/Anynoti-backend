@@ -2,7 +2,7 @@ package com.anynoti.domain.animation;
 
 import com.anynoti.domain.common.BaseTimeEntity;
 import com.anynoti.domain.common.BooleanToYNConverter;
-import com.anynoti.domain.user.ProviderType;
+import com.anynoti.enums.ProviderType;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,16 +40,13 @@ public class Animation extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer recentEpisode;
 
-    @Column(nullable = false)
     private LocalDateTime recentDatetime;
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false, columnDefinition = "N")
     private boolean isEnd;
 
-    @Enumerated(EnumType.STRING)
-    private ProviderType providerType;
-
+    //TODO: 일급 컬렉션
     @OneToMany(mappedBy = "animation", cascade = CascadeType.ALL)
     private List<AnimationBox> animationBoxes = new ArrayList<>();
 
@@ -58,7 +55,6 @@ public class Animation extends BaseTimeEntity {
         this.title = title;
         this.thumbnail = thumbnail;
         this.recentEpisode = recentEpisode;
-        this.providerType = providerType;
     }
 
     public void addAnimationBox(AnimationBox animationBox){

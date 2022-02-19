@@ -1,4 +1,6 @@
 
 dependencies {
-
+    implementation("$boot:spring-boot-starter-web")
+    //jwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }

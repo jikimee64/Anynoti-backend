@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 public class AnimationWrapper<T> {
     @JsonProperty("animations")
     private T content;
-    private int count;
 }

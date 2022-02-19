@@ -1,12 +1,16 @@
 package com.anynoti;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.anynoti.enums.ProviderType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Target(ElementType.PARAMETER)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface LoginUser {
-
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginUser {
+    private String providerId;
+    private ProviderType providerType;
 }

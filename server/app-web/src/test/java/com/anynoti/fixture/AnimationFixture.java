@@ -14,14 +14,14 @@ public class AnimationFixture {
         return Stream.of(
             Arguments.of(Arrays.asList(
                 AnimationResponse.builder()
-                    .id(2)
+                    .id(2L)
                     .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
                     .title("애니제목1")
                     .recent_episode(12)
                     .end(true)
                     .build(),
                 AnimationResponse.builder()
-                    .id(2)
+                    .id(2L)
                     .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
                     .title("애니제목1")
                     .recent_episode(4)
@@ -35,12 +35,12 @@ public class AnimationFixture {
         return Stream.of(
             Arguments.of(Arrays.asList(
                 AnimationResponse.builder()
-                    .id(1)
+                    .id(1L)
                     .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
                     .title("애니제목1")
                     .build(),
                 AnimationResponse.builder()
-                    .id(2)
+                    .id(2L)
                     .thumbnail("https://img.seoul.co.kr/img/upload/2017/07/14/SSI_20170714170426_O2.jpg")
                     .title("애니제목2")
                     .build()

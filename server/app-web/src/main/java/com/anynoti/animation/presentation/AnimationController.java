@@ -4,7 +4,6 @@ import com.anynoti.AuthenticationPrincipal;
 import com.anynoti.LoginUser;
 import com.anynoti.animation.application.AnimationService;
 import com.anynoti.animation.dto.AnimationWrapper;
-import com.anynoti.animation.dto.request.AddAnimationRequest;
 import com.anynoti.animation.dto.request.PatchAnimationRequest;
 import com.anynoti.animation.dto.response.AnimationResponse;
 import com.anynoti.enums.appweb.SearchKind;
@@ -34,52 +33,54 @@ public class AnimationController {
     public ResponseEntity<AnimationWrapper> findTodoAnimations(
         @AuthenticationPrincipal LoginUser loginUser,
         @RequestParam(name = "kind", defaultValue = "TODO", required = false) SearchKind searchKind
-    ){
-        System.out.println("Lopgin" + loginUser.getProviderId());
-        List<AnimationResponse> animationResponses = animationService.findTodoAnimations(loginUser, searchKind);
-        return ResponseEntity.ok(AnimationWrapper.<List<AnimationResponse>>builder()
-            .content(animationResponses)
-            .build()
+    ) {
+        List<AnimationResponse> animationResponses = animationService.findTodoAnimations(loginUser,
+            searchKind);
+        return ResponseEntity.ok(
+            AnimationWrapper.<List<AnimationResponse>>builder()
+                .content(animationResponses)
+                .build()
         );
     }
 
     @GetMapping("/search")
     public ResponseEntity<AnimationWrapper> findAnimations(
         @RequestParam String title
-    ){
-        List<AnimationResponse> animationResponses = animationService.findAnimations(title);
+    ) {
+        List<AnimationResponse> animationResponses = animationService.findAnimationsBySearch(title);
         return ResponseEntity.ok(
             AnimationWrapper.<List<AnimationResponse>>builder()
-            .content(animationResponses)
-            .build()
+                .content(animationResponses)
+                .build()
         );
     }
 
-    //TODO: @AuthenticationPrincipal
     @GetMapping("/{id}")
     public ResponseEntity<AnimationResponse> findDetailAnimations(
-        @PathVariable("id") Integer id
-    ){
-        AnimationResponse animationResponses = animationService.findDetailAnimations();
+        @AuthenticationPrincipal LoginUser loginUser,
+        @PathVariable("id") Long id
+    ) {
+        AnimationResponse animationResponses = animationService.findDetailAnimations(loginUser, id);
         return ResponseEntity.ok(animationResponses);
     }
 
-    //TODO: @AuthenticationPrincipal
-    @PostMapping("/todos")
-    public ResponseEntity<Void> AddAnimations(
-        @RequestBody @Valid AddAnimationRequest addAnimationRequest
-    ){
-        animationService.AddAnimations(addAnimationRequest);
+    @PostMapping("/todos/{id}")
+    public ResponseEntity<Void> addTodoAnimations(
+        @AuthenticationPrincipal LoginUser loginUser,
+        @PathVariable Long id
+    ) {
+        animationService.addTodoAnimations(loginUser, id);
         return ResponseEntity.noContent().build();
     }
 
-    //TODO: @AuthenticationPrincipal
     @PatchMapping("/todos/{id}")
     public ResponseEntity<AnimationResponse> patchAnimation(
-        @PathVariable Integer id,
+        @PathVariable Long id,
+        @AuthenticationPrincipal LoginUser loginUser,
         @RequestBody @Valid PatchAnimationRequest patchAnimationRequest
-    ){
-        AnimationResponse animationResponse = animationService.patchAnimation(patchAnimationRequest);
+    ) {
+        AnimationResponse animationResponse = animationService.patchAnimation(
+            id, loginUser, patchAnimationRequest);
         return ResponseEntity.ok(animationResponse);
     }
 

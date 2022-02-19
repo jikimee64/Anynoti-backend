@@ -2,6 +2,6 @@ package com.anynoti.domain.animation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AnimationRepository extends JpaRepository<Animation, Long> {
+public interface AnimationBoxRepository extends JpaRepository<AnimationBox, Integer> {
 
 }

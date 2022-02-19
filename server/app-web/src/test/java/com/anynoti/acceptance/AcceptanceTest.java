@@ -53,8 +53,15 @@ public abstract class AcceptanceTest {
         );
     }
 
-    protected <T> ExtractableResponse<Response> callApiPost(String url, T request, Class<T> clazz) {
+    protected <T> ExtractableResponse<Response> callApiPost(String url, T request) {
         return this.doPost(
+            url,
+            request
+        );
+    }
+
+    protected <T> ExtractableResponse<Response> callApiPatch(String url, T request) {
+        return this.doPatch(
             url,
             request
         );
@@ -84,6 +91,21 @@ public abstract class AcceptanceTest {
             .body(request)
             .when()
             .post(path)
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.OK.value())
+            .extract();
+    }
+
+    private <T> ExtractableResponse<Response> doPatch(String path, T request) {
+        return given().log().all()
+            .headers(getHeaders())
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .and()
+            .body(request)
+            .when()
+            .patch(path)
             .then()
             .log().all()
             .statusCode(HttpStatus.OK.value())

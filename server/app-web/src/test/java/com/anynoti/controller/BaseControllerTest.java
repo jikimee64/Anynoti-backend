@@ -40,13 +40,18 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @AutoConfigureRestDocs
 @ActiveProfiles({"test"})
 public abstract class BaseControllerTest {
+
+    //TODO: 2월 15일 22시 45분 발급, 한달짜리 테스트 토큰
+    private static final String JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJwcm92aWRlcklkXCI6XCIxMDA4ODU1MDgwNTMxNzE2ODI1MTdcIixcInByb3ZpZGVyVHlwZVwiOlwiR09PR0xFXCJ9IiwiaWF0IjoxNjQ0OTMyNjkxLCJleHAiOjE4MDA0NTI2OTF9.SME1C1JdkIyJiWBeROrghW0EyoaCiSLTgh5euaWhBevaOG0wXZNhagl4Kwt1WBk2jJxxhVxJTX1C_amtFvFeqA";
+
     @Autowired
     protected MockMvc mockMvc;
     @Autowired
     protected ObjectMapper objectMapper;
 
     @BeforeEach
-    public void before(WebApplicationContext ctx, RestDocumentationContextProvider restDocumentationContextProvider) {
+    public void before(WebApplicationContext ctx,
+        RestDocumentationContextProvider restDocumentationContextProvider) {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx)
             .apply(documentationConfiguration(restDocumentationContextProvider))
             .addFilters(new CharacterEncodingFilter("UTF-8", true))
@@ -54,10 +59,11 @@ public abstract class BaseControllerTest {
             .build();
     }
 
-    protected ResultActions doGet(String path, MultiValueMap<String, String> params, String responseBody) throws Exception {
-        return this.mockMvc.perform(get(path )
+    protected ResultActions doGet(String path, MultiValueMap<String, String> params,
+        String responseBody) throws Exception {
+        return this.mockMvc.perform(get(path)
                 .params(params)
-                .header(AUTHORIZATION, "jwt token")
+                .header(AUTHORIZATION, "Bearer " + JWT_TOKEN)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
             )
@@ -69,7 +75,7 @@ public abstract class BaseControllerTest {
     protected ResultActions doPost(MockMvcDto mockMvcDto) throws Exception {
         return this.mockMvc.perform(post(mockMvcDto.getPath())
                 .content(mockMvcDto.getRequestBody())
-                .header(AUTHORIZATION, "jwt token")
+                .header(AUTHORIZATION, "Bearer " + JWT_TOKEN)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
             )
@@ -81,7 +87,7 @@ public abstract class BaseControllerTest {
     protected ResultActions doPatch(MockMvcDto mockMvcDto) throws Exception {
         return this.mockMvc.perform(patch(mockMvcDto.getPath())
                 .content(mockMvcDto.getRequestBody())
-                .header(AUTHORIZATION, "jwt token")
+                .header(AUTHORIZATION, "Bearer " + JWT_TOKEN)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
             )

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,13 +29,16 @@ public class AnimationBox extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Convert(converter = BooleanToYNConverter.class)
-    @Column(nullable = false, columnDefinition = "N")
-    private boolean liked;
+    @Lob
+    private String memo;
 
     @Convert(converter = BooleanToYNConverter.class)
     @Column(nullable = false, columnDefinition = "N")
-    private boolean notied;
+    private Boolean liked;
+
+    @Convert(converter = BooleanToYNConverter.class)
+    @Column(nullable = false, columnDefinition = "N")
+    private Boolean notied;
 
     @JoinColumn(name = "animation_id", nullable = false, foreignKey = @ForeignKey(name = "FK_animationbox_to_animation"))
     @ManyToOne
@@ -50,24 +54,30 @@ public class AnimationBox extends BaseTimeEntity {
         this.user = user;
     }
 
-    public void setAnimation(Animation animation){
-        if(this.animation != null){
+    public void setAnimation(Animation animation) {
+        if (this.animation != null) {
             this.animation.getAnimationBoxes().remove(this);
         }
         this.animation = animation;
-        if(!animation.getAnimationBoxes().contains(this)){
+        if (!animation.getAnimationBoxes().contains(this)) {
             animation.getAnimationBoxes().add(this);
         }
     }
 
-    public void setUser(User user){
-        if(this.user != null){
+    public void setUser(User user) {
+        if (this.user != null) {
             this.user.getAnimationBoxes().remove(this);
         }
         this.user = user;
-        if(!user.getAnimationBoxes().contains(this)){
+        if (!user.getAnimationBoxes().contains(this)) {
             user.getAnimationBoxes().add(this);
         }
+    }
+
+    public void changeDetail(String memo, boolean notied, boolean liked) {
+        this.memo = memo;
+        this.liked = liked;
+        this.notied = notied;
     }
 
 }
